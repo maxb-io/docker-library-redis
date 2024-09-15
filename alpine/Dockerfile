@@ -37,15 +37,15 @@ RUN set -eux; \
 	gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
 	gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 	gpgconf --kill all; \
-	rm -f "$GNUPGHOME" /usr/local/bin/gosu.asc; \
+	rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	apk del --no-network .gosu-fetch; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu --version; \
 	gosu nobody true
 
-ENV REDIS_VERSION=8.0-m01
-ENV REDIS_DOWNLOAD_URL=https://github.com/redis/redis/archive/refs/tags/8.0-m01.tar.gz
-ENV REDIS_DOWNLOAD_SHA=4c77c2218747505c50c43a45d12a067a3631a26d9397929da180e183b03e862c
+ENV REDIS_VERSION=support-musl
+ENV REDIS_DOWNLOAD_URL=https://github.com/adamiBs/redis/archive/refs/heads/support-musl.tar.gz
+ENV REDIS_DOWNLOAD_SHA=4de4007d7a18567c69b0adfd3f4606ffcdedd60ef37d62e101ada7e83d6a36cb
 
 RUN set -eux; \
 	\
@@ -82,11 +82,11 @@ RUN set -eux; \
       libtool \
       g++ \
       libgcc \
+			bash \
 			;\
 	fi; \
 	\
 	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
-	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
 	rm redis.tar.gz; \
