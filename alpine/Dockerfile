@@ -67,23 +67,32 @@ RUN set -eux; \
 	esac; \
 	if [ "$BUILD_WITH_MODULES" = "yes" ]; then \
     apk add --no-cache --virtual .module-build-deps \
-      git \
+      bash \
+      autoconf \
+      automake \
+      bsd-compat-headers \
+      build-base \
+      clang \
+      clang17-libclang \
       cmake \
       curl \
-      python3 \
+      g++ \
+      git \
+      libgcc \
+      libtool \
+      openssl  \
+      openssl-dev \
       py3-pip \
       py3-virtualenv \
+      python3 \
       python3-dev \
-      unzip \
       rsync \
-      clang \
-      automake \
-      autoconf \
-      libtool \
-      g++ \
-      libgcc \
-			bash \
-			;\
+      tar \
+      unzip \
+      which \
+      xsimd \
+      xz \
+	;\
 	fi; \
 	\
 	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
