@@ -47,7 +47,7 @@ ENV REDIS_VERSION=support-musl
 #ENV REDIS_DOWNLOAD_URL=https://github.com/adamiBs/redis/archive/refs/heads/support-musl.tar.gz
 ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-io/redis/archive/refs/heads/RED-134818-maxb-supp-musle.tar.gz
 ENV REDIS_DOWNLOAD_SHA=4de4007d7a18567c69b0adfd3f4606ffcdedd60ef37d62e101ada7e83d6a36cb
-
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN set -eux; \
 	\
 	apk add --no-cache --virtual .build-deps \
@@ -68,21 +68,30 @@ RUN set -eux; \
 	esac; \
 	if [ "$BUILD_WITH_MODULES" = "yes" ]; then \
     apk add --no-cache --virtual .module-build-deps \
-      bash \
       autoconf \
       automake \
+      bash \
       bsd-compat-headers \
       build-base \
+      cargo \
       clang \
       clang17-libclang \
+      clang18-libclang \
       cmake \
       curl \
       g++ \
+      gcc \
       git \
+      libffi-dev \
       libgcc \
       libtool \
+      linux-headers \
+      musl-dev \
+      openssh \
       openssl  \
       openssl-dev \
+      py-virtualenv \
+      py3-cryptography \
       py3-pip \
       py3-virtualenv \
       python3 \
@@ -96,7 +105,8 @@ RUN set -eux; \
 	;\
 	fi; \
 	\
-	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
+	pip install -q --upgrade setuptools &&  pip install -q --upgrade pip && pip install -q -r tests/pytest/requirements.txt && pip install -q -r .install/build_package_requirements.txt. ;\
+ 	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
 	rm redis.tar.gz; \
