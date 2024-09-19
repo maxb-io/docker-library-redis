@@ -45,7 +45,7 @@ RUN set -eux; \
 
 ENV REDIS_VERSION=support-musl
 #ENV REDIS_DOWNLOAD_URL=https://github.com/adamiBs/redis/archive/refs/heads/support-musl.tar.gz
-ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-io/redis/archive/refs/heads/RED-134818-unstable.tar.gz
+ENV REDIS_DOWNLOAD_URL=https:https://github.com/maxb-io/redis/archive/refs/heads/RED-134818-maxb-supp-musle.tar.gz
 ENV REDIS_DOWNLOAD_SHA=4de4007d7a18567c69b0adfd3f4606ffcdedd60ef37d62e101ada7e83d6a36cb
 
 RUN set -eux; \
