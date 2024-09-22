@@ -79,16 +79,12 @@ RUN set -eux; \
       cmake \
       curl \
       g++ \
-      gcc \
       git \
       libffi-dev \
       libgcc \
       libtool \
-      linux-headers \
-      musl-dev \
       openssh \
       openssl  \
-      openssl-dev \
       py-virtualenv \
       py3-cryptography \
       py3-pip \
