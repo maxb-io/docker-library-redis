@@ -137,7 +137,7 @@ runs:
         echo "Installed modules:"
         echo "$modules"
         missing_modules=()
-        for module in "bf" "search" "timeseries"; do
+        for module in "bf" "search" "timeseries" "ReJSON"; do
           if ! echo "$modules" | grep -q "$module"; then
             missing_modules+=("$module")
           fi
