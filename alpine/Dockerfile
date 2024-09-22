@@ -75,7 +75,7 @@ RUN set -eux; \
       build-base \
       cargo \
       clang \
-      clang16-libclang \
+      clang18-libclang \
       cmake \
       curl \
       g++ \
