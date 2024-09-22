@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.latest
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN set -eux; \
@@ -105,7 +105,7 @@ RUN set -eux; \
 	fi; \
 	\
 #	install required python packages for RedisJSON module
-	pip install -q --upgrade setuptools &&  pip install -q --upgrade pip && pip install -q addict toml jinja2 ramp-packer==2.5.10 ;\
+	pip install -q --upgrade setuptools &&  pip install -q --upgrade pip && pip install -q addict toml jinja2 ramp-packer ;\
  	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
