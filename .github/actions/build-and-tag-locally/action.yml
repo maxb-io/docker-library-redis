@@ -37,6 +37,7 @@ runs:
       run: |
         echo "removing qemu-user-static"
         sudo apt-get remove -y qemu-user-static 
+        sudo apt-get remove --purge -y 'libclang*'    
         sudo apt-get remove --purge -y 'llvm*' && sudo apt-get autoremove -y
         sudo apt list --installed |grep qemu || true
         sudo apt list --installed |grep llvm || true
