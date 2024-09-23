@@ -32,12 +32,13 @@ runs:
         sudo apt-get install -y qemu-user-static
 
     - name: Uninstall QEMU user static (if platform is linux/amd64)
-      shell: bash
+      shell: bash -v
       if: ${{ inputs.platform == 'linux/amd64' }}
       run: |
         echo "removing qemu-user-static"
-        sudo apt-get update
+        id
         sudo apt list --installed| grep  qemu-user-static
+        echo "removing qemu-user-static"
         sudo apt-get remove -y qemu-user-static         
 
     - name: Set up Docker Buildx
