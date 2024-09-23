@@ -124,7 +124,7 @@ RUN set -eux; \
 # https://salsa.debian.org/debian/jemalloc/-/blob/c0a88c37a551be7d12e4863435365c9a6a51525f/debian/rules#L8-23
 	dpkgArch="$(dpkg --print-architecture)"; \
 	case "${dpkgArch##*-}" in \
-		amd64 | i386 | x32) echo="$extraJemallocConfigureFlags --with-lg-page=12" ;; \
+		amd64 | i386 | x32) extraJemallocConfigureFlags="$extraJemallocConfigureFlags --with-lg-page=12" ;; \
 		*) extraJemallocConfigureFlags="$extraJemallocConfigureFlags --with-lg-page=16" ;; \
 	esac; \
 	extraJemallocConfigureFlags="$extraJemallocConfigureFlags --with-lg-hugepage=21"; \
@@ -135,7 +135,6 @@ RUN set -eux; \
 	export BUILD_TLS=yes; \
 	make -C /usr/src/redis -j "$(nproc)" all; \
 	make -C /usr/src/redis install; \
-    ls -l /usr/lib/llvm18/lib/libclang.so*; \
 	\
 # TODO https://github.com/redis/redis/pull/3494 (deduplicate "redis-server" copies)
 	serverMd5="$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)"; export serverMd5; \
