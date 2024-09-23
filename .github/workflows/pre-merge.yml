@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - uses: ./.github/actions/build-and-tag-locally@RED-134818/maxb-alpine-support
+      - uses: ./.github/actions/build-and-tag-locally
         with:
           distribution: ${{ matrix.distribution }}
           platform: ${{ matrix.platform }}
