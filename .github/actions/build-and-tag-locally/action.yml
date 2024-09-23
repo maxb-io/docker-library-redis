@@ -31,16 +31,15 @@ runs:
         sudo apt-get update
         sudo apt-get install -y qemu-user-static
 
-    - name: Uninstall QEMU user static (if platform is linux/amd64)
+    - name: Uninstall QEMU and LLVM on linux/amd64
       shell: bash
       if: ${{ inputs.platform == 'linux/amd64' }}
       run: |
         echo "removing qemu-user-static"
-        id
-        sudo apt list --installed
-        echo "removing qemu-user-static"
-        sudo apt-get remove -y qemu-user-static         
-
+        sudo apt-get remove -y qemu-user-static 
+        sudo apt-get remove --purge -y 'llvm*' && sudo apt-get autoremove -y
+        sudo apt list --installed |grep qemu || true
+        sudo apt list --installed |grep llvm || true
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
