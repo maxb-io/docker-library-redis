@@ -158,6 +158,7 @@ RUN set -eux; \
 	)"; \
 	apk add --no-network --virtual .redis-rundeps $runDeps; \
 	apk del --no-network .build-deps; \
+	apk del --no-network .module-build-deps; \
 	\
 	redis-cli --version; \
 	redis-server --version;
