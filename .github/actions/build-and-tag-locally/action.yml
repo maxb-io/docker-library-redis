@@ -37,7 +37,7 @@ runs:
       run: |
         echo "removing qemu-user-static"
         id
-        sudo apt list --installed| grep  qemu
+        sudo apt list --installed
         echo "removing qemu-user-static"
         sudo apt-get remove -y qemu-user-static         
 
