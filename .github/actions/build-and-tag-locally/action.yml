@@ -25,7 +25,7 @@ runs:
   steps:
     - name: Install QEMU user static (if platform is not linux/arm64)
       shell: bash
-      if: ${{ github.event.inputs.platform != 'linux/amd64' }}
+      if: ${{ inputs.platform != 'linux/amd64' }}
       run: |
         echo "AAAAAAAAAAAAAAAAA"
         sudo apt-get update
