@@ -158,7 +158,9 @@ RUN set -eux; \
 	)"; \
 	apk add --no-network --virtual .redis-rundeps $runDeps; \
 	apk del --no-network .build-deps; \
-	apk del --no-network .module-build-deps; \
+    if [ "$BUILD_WITH_MODULES" = "yes" ]; then \
+    	apk del --no-network .module-build-deps; \
+    fi; \
 	\
 	redis-cli --version; \
 	redis-server --version;
