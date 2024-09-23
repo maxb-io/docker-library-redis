@@ -32,7 +32,7 @@ runs:
         sudo apt-get install -y qemu-user-static
 
     - name: Uninstall QEMU user static (if platform is linux/amd64)
-      shell: bash -v
+      shell: bash
       if: ${{ inputs.platform == 'linux/amd64' }}
       run: |
         echo "removing qemu-user-static"
