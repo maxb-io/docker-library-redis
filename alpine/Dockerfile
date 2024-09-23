@@ -80,7 +80,6 @@ RUN set -eux; \
       curl \
       g++ \
       git \
-      libc-devtools \
       libffi-dev \
       libgcc \
       libtool \

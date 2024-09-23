@@ -41,6 +41,7 @@ runs:
         sudo apt-get remove --purge -y 'llvm*' && sudo apt-get autoremove -y
         sudo apt list --installed |grep qemu || true
         sudo apt list --installed |grep llvm || true
+        sudo apt install libc-devtools -y
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
