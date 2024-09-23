@@ -73,7 +73,6 @@ RUN set -eux; \
       bash \
       bsd-compat-headers \
       build-base \
-      cargo \
       clang \
       clang18-libclang \
       cmake \
