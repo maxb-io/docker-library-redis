@@ -1,7 +1,7 @@
 FROM alpine:3.20
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN set -eux; \
+RUN set -eux;\
 # alpine already has a gid 999, so we'll use the next id
 	addgroup -S -g 1000 redis; \
 	adduser -S -G redis -u 999 redis
