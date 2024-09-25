@@ -13,33 +13,8 @@ RUN set -eux; \
 		tzdata \
 	;
 
-	apk add --no-cache --virtual .build-deps \
-		coreutils \
-        dnsmasq \
-		dpkg-dev dpkg \
-		gcc \
-		linux-headers \
-		make \
-		musl-dev \
-		openssl-dev \
-	; \
-
-cat > /etc/resolv.conf << EOF
-127.0.0.1
-EOF
-# add dnsmasq config to solve Alpine DNS issue
-cat >> /etc/dnsmasq.conf << EOF
-port=53
-listen-address=127.0.0.1
-strict-order
-no-resolv
-no-poll
-server=IP_address_1
-server=IP_address_2
-EOF
-
-rc-update add dnsmasq default
-rc-service dnsmasq start
+#Atempt to fix DNS resolution issues in alpine
+sudo su "echo 'nameserver 8.8.8.8' > /etc/resolv.conf" \
 
 # grab gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
@@ -77,6 +52,16 @@ ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-io/redis/archive/refs/heads/RED-1
 ENV REDIS_DOWNLOAD_SHA=4de4007d7a18567c69b0adfd3f4606ffcdedd60ef37d62e101ada7e83d6a36cb
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN set -eux; \
+	\
+	apk add --no-cache --virtual .build-deps \
+		coreutils \
+		dpkg-dev dpkg \
+		gcc \
+		linux-headers \
+		make \
+		musl-dev \
+		openssl-dev \
+	; \
   \
 	arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	case "$arch" in \
