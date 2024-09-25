@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: [self-hosted, Linux, X86, ubuntu-2204-x86]
+    runs-on: [self-hosted, ubuntu-2204-x64]
     strategy:
       matrix:
         distribution:
