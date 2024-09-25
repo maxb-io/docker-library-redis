@@ -13,8 +13,8 @@ RUN set -eux; \
 		tzdata \
 	;
 
-#Atempt to fix DNS resolution issues in alpine
-sudo su "echo 'nameserver 8.8.8.8' > /etc/resolv.conf" \
+#Atempt to fix DNS resolution issues in alpine, required for self hosted runners
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf ; \
 
 # grab gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
