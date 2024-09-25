@@ -2,7 +2,8 @@ FROM alpine:3.20
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN set -eux; \
-    #Atempt to fix DNS resolution issues in alpine, required for self hosted runners
+    #Atempt to fix DNS resolution issues in alpine, required for self hosted runners \
+    cat /etc/resolv.conf; \
     echo 'nameserver 8.8.8.8' > /etc/resolv.conf ; \
 # alpine already has a gid 999, so we'll use the next id
 	addgroup -S -g 1000 redis; \
@@ -14,6 +15,9 @@ RUN set -eux; \
 # add tzdata for https://github.com/docker-library/redis/issues/138
 		tzdata \
 	;
+
+#Atempt to fix DNS resolution issues in alpine, required for self hosted runners
+RUN echo 'nameserver 8.8.8.8' > /etc/resolv.conf ; \
 
 # grab gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
