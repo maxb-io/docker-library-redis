@@ -89,7 +89,7 @@ runs:
         password: ${{ inputs.registry_password }}
 
     - name: Build
-      uses: docker/build-push-action@v6.7
+      uses: docker/build-push-action@v6.7.0
       with:
         context: ${{ inputs.distribution }}
         push: false
@@ -206,7 +206,7 @@ runs:
         fi
 
     - name: Push image
-      uses: docker/build-push-action@v6.7
+      uses: docker/build-push-action@v6.7.0
       if: ${{ inputs.publish_image == 'true' && contains(fromJSON('["amd64"]'), steps.platform.outputs.display_name) }}
       with:
         context: ${{ inputs.distribution }}
