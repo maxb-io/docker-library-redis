@@ -23,10 +23,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install QEMU user static
+    - name: Install QEMU
       shell: bash
       run: |
-        echo "installing qemu-user-static"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static
     - name: Set up Docker Buildx
@@ -89,7 +88,7 @@ runs:
         password: ${{ inputs.registry_password }}
 
     - name: Build
-      uses: docker/build-push-action@v6.7.0
+      uses: docker/build-push-action@v6
       with:
         context: ${{ inputs.distribution }}
         push: false
@@ -134,8 +133,6 @@ runs:
       if: ${{ contains(fromJSON('["amd64"]'), steps.platform.outputs.display_name) }}
       shell: bash
       run: |
-        docker images
-        docker ps -a
         modules=$(docker exec sanity-test-${{ steps.platform.outputs.display_name }} redis-cli module list)
         echo "Installed modules:"
         echo "$modules"
@@ -208,7 +205,7 @@ runs:
         fi
 
     - name: Push image
-      uses: docker/build-push-action@v6.7.0
+      uses: docker/build-push-action@v6
       if: ${{ inputs.publish_image == 'true' && contains(fromJSON('["amd64"]'), steps.platform.outputs.display_name) }}
       with:
         context: ${{ inputs.distribution }}
