@@ -131,9 +131,11 @@ runs:
         docker exec sanity-test-${{ steps.platform.outputs.display_name }} redis-cli info server
   
     - name: Verify installed modules
-      if: ${{ contains(fromJSON('["amd64"]'), steps.platform.outputs.display_name) }}
+      if: ${{ contains(fromJSON('["amd64", "arm64"]'), steps.platform.outputs.display_name) }}
       shell: bash
       run: |
+        docker images
+        docker ps -a
         modules=$(docker exec sanity-test-${{ steps.platform.outputs.display_name }} redis-cli module list)
         echo "Installed modules:"
         echo "$modules"
