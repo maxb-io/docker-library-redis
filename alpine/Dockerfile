@@ -162,7 +162,7 @@ RUN set -eux; \
     fi; \
     apk del --no-network .build-deps; \
     apk --purge del apk-tools ; \
-    rm -fr ~/.cache/pip*  rm -f /sbin/apk && rm -rf /etc/apk && rm -rf /lib/apk && rm -rf /usr/share/apk && rm -rf /var/lib/apk ; \
+    rm -fr ~/.cache/pip*  rm -f /sbin/apk && rm -rf /etc/apk && rm -rf /lib/apk && rm -rf /usr/share/apk && rm -rf /var/lib/apk && rm -rf /usr/lib/python*; \
 	\
 	redis-cli --version; \
 	redis-server --version;
