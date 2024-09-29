@@ -137,6 +137,7 @@ RUN set -eux; \
     if ! grep -q '^get_source:' /usr/src/redis/Makefile; then \
     echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \$(MAKE) -C \$\$dir \$@; done\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
     fi; \
+    cat /usr/src/redis/Makefile; \
 	make -C /usr/src/redis get_source; \
     echo "AAAAAAAAAAAAAAAAAAAAAAA" ; \
     ls -l /usr/src/redis/modules/; \
