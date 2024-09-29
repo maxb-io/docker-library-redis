@@ -143,9 +143,10 @@ RUN set -eux; \
 #    cat /usr/src/redis/Makefile; \
     if [ "$BUILD_WITH_MODULES" = "yes" ]; then \
         make -C /usr/src/redis/modules/redisjson get_source; \
-        sed -i 's/^RUST_FLAGS=$/RUST_FLAGS += -C target-feature=-crt-static/' /usr/src/redis/modules/redisjson/Makefile ; \
+        sed -i 's/^RUST_FLAGS=$/RUST_FLAGS += -C target-feature=-crt-static/' /usr/src/redis/modules/redisjson/src/Makefile ; \
         echo "AAAAAAAAAAAAAAAAAAAAAAAA"; \
-        ls -l /usr/src/redis/modules/redisjson/; \
+        ls -l /usr/src/redis/modules/redisjson/src/Makefile; \
+        cat /usr/src/redis/modules/redisjson/src/Makefile; \
         find /usr/src/redis -name Makefile; \
     fi; \
 	make -C /usr/src/redis -j "$(nproc)" all; \
