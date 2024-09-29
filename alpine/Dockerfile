@@ -137,7 +137,8 @@ RUN set -eux; \
     if ! grep -q '^get_source:' /usr/src/redis/Makefile; then \
 #    echo -e "\nget_source:\n\tfor dir in \'redisjson\' ; do \$(MAKE) -C \$\$dir \$@; done\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
 #    echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \n\tif [[ \$\$dir == 'redisjson' ]]; then \$(MAKE) -C \$\$dir \$@; fi; \n\tdone\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
-    echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \\\n\t\tif [ \"\$\$dir\" = \"redisjson\" ]; then \\\n\t\t\t\$(MAKE) -C \$\$dir \$@; \\\n\t\tfi; \\\n\tdone\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
+#    echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \\\n\t\tif [ \"\$\$dir\" = \"redisjson\" ]; then \\\n\t\t\t\$(MAKE) -C \$\$dir \$@; \\\n\t\tfi; \\\n\tdone\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
+    echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \n\t\tif [ \"\$\$dir\" = \"redisjson\" ]; then \n\t\t\t\$(MAKE) -C \$\$dir \$@; \n\t\tfi; \n\tdone\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
     fi; \
     cat /usr/src/redis/Makefile; \
 	make -C /usr/src/redis get_source; \
