@@ -141,10 +141,12 @@ RUN set -eux; \
 #    echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \n\t\tif [ \"\$\$dir\" = \"redisjson\" ]; then \n\t\t\t\$(MAKE) -C \$\$dir \$@; \n\t\tfi; \n\tdone\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
 #    fi; \
 #    cat /usr/src/redis/Makefile; \
-	make -C /usr/src/redis/modules/redisjson get_source; \
-    echo "AAAAAAAAAAAAAAAAAAAAAAA" ; \
-    ls -l /usr/src/redis/modules/redisjson; \
-    echo "BBBBBBBBBBBBBBBBBBBBBBB" ; \
+    if [ "$BUILD_WITH_MODULES" = "yes" ]; then \
+        make -C /usr/src/redis/modules/redisjson get_source; \
+        echo "AAAAAAAAAAAAAAAAAAAAAAA" ; \
+        ls -l /usr/src/redis/modules/redisjson; \
+        echo "BBBBBBBBBBBBBBBBBBBBBBB" ; \
+    fi; \
 	make -C /usr/src/redis -j "$(nproc)" all; \
 	make -C /usr/src/redis install; \
 	\
