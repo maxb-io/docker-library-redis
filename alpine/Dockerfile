@@ -145,7 +145,8 @@ RUN set -eux; \
         make -C /usr/src/redis/modules/redisjson get_source; \
         sed -i 's/^RUST_FLAGS=$/RUST_FLAGS += -C target-feature=-crt-static/' /usr/src/redis/modules/redisjson/Makefile ; \
         echo "AAAAAAAAAAAAAAAAAAAAAAAA"; \
-        cat /usr/src/redis/modules/redisjson/Makefile; \
+        ls -l /usr/src/redis/modules/redisjson/; \
+        find /usr/src/redis -name Makefile; \
     fi; \
 	make -C /usr/src/redis -j "$(nproc)" all; \
 	make -C /usr/src/redis install; \
