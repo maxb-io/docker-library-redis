@@ -134,6 +134,9 @@ RUN set -eux; \
 	grep -F "cd jemalloc && ./configure $extraJemallocConfigureFlags " /usr/src/redis/deps/Makefile; \
 	\
 	export BUILD_TLS=yes; \
+    if ! grep -q '^get_source:' /usr/src/redis/Makefile; then \
+    echo -e "\nget_source:\n\tfor dir in \$(SUBDIRS); do \$(MAKE) -C \$\$dir \$@; done\n\n.PHONY: get_source" >> /usr/src/redis/Makefile; \
+    fi; \
 	make -C /usr/src/redis get_source; \
     echo "AAAAAAAAAAAAAAAAAAAAAAA" ; \
     ls -l /usr/src/redis/modules/; \
