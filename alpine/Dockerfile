@@ -1,7 +1,7 @@
 FROM alpine:3.20
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN set -eux;\
+RUN set -eux; \
 # alpine already has a gid 999, so we'll use the next id
 	addgroup -S -g 1000 redis; \
 	adduser -S -G redis -u 999 redis
@@ -144,10 +144,7 @@ RUN set -eux; \
     if [ "$BUILD_WITH_MODULES" = "yes" ]; then \
         make -C /usr/src/redis/modules/redisjson get_source; \
         sed -i 's/^RUST_FLAGS=$/RUST_FLAGS += -C target-feature=-crt-static/' /usr/src/redis/modules/redisjson/src/Makefile ; \
-        echo "AAAAAAAAAAAAAAAAAAAAAAAA"; \
-        ls -l /usr/src/redis/modules/redisjson/src/Makefile; \
-        cat /usr/src/redis/modules/redisjson/src/Makefile; \
-        find /usr/src/redis -name Makefile; \
+        grep -E 'RUST_FLAGS' /usr/src/redis/modules/redisjson/src/Makefile; \
     fi; \
 	make -C /usr/src/redis -j "$(nproc)" all; \
 	make -C /usr/src/redis install; \
