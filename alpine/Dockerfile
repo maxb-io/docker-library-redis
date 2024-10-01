@@ -59,6 +59,7 @@ RUN set -eux; \
 		make \
 		musl-dev \
 		openssl-dev \
+        g++ \
 	; \
   \
 	arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
