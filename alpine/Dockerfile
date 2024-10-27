@@ -45,7 +45,8 @@ RUN set -eux; \
 
 ENV REDIS_VERSION=support-musl
 #ENV REDIS_DOWNLOAD_URL=https://github.com/adamiBs/redis/archive/refs/heads/support-musl.tar.gz
-ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-ioa/redis/archive/refs/heads/8.0ma.tar.gz
+#ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-ioa/redis/archive/refs/heads/8.0ma.tar.gz
+ENV REDIS_DOWNLOAD_URL=https://github.com/redis/redis/archive/refs/heads/8.0.tar.gz
 #ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-io/redis/archive/refs/heads/RED-134818-maxb-supp-musle.tar.gz
 ENV REDIS_DOWNLOAD_SHA=4de4007d7a18567c69b0adfd3f4606ffcdedd60ef37d62e101ada7e83d6a36cb
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
