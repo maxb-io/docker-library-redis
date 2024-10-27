@@ -44,11 +44,8 @@ RUN set -eux; \
 	gosu nobody true
 
 ENV REDIS_VERSION=support-musl
-#ENV REDIS_DOWNLOAD_URL=https://github.com/adamiBs/redis/archive/refs/heads/support-musl.tar.gz
-#ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-ioa/redis/archive/refs/heads/8.0ma.tar.gz
 ENV REDIS_DOWNLOAD_URL=https://github.com/redis/redis/archive/refs/heads/8.0.tar.gz
-#ENV REDIS_DOWNLOAD_URL=https://github.com/maxb-io/redis/archive/refs/heads/RED-134818-maxb-supp-musle.tar.gz
-ENV REDIS_DOWNLOAD_SHA=4de4007d7a18567c69b0adfd3f4606ffcdedd60ef37d62e101ada7e83d6a36cb
+ENV REDIS_DOWNLOAD_SHA=e9e4bf2895b830b0e183c2cf03fd9995899926d8d832850239e84e2c845b2721
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN set -eux; \
 	\
@@ -106,7 +103,8 @@ RUN set -eux; \
 #	install required python packages for RedisJSON module
 	pip install -q --upgrade setuptools &&  pip install -q --upgrade pip && pip install -q addict toml jinja2 ramp-packer ;\
  	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
-# !!!!!!!!!! ADD BACK before merge !!!!!    echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
+    sha256sum -c *redis.tar.gz; \
+    echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
 	rm redis.tar.gz; \
