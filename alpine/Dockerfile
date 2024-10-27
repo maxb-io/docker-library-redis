@@ -103,7 +103,7 @@ RUN set -eux; \
 #	install required python packages for RedisJSON module
 	pip install -q --upgrade setuptools &&  pip install -q --upgrade pip && pip install -q addict toml jinja2 ramp-packer ;\
  	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
-    sha256sum -c *redis.tar.gz; \
+    sha256sum *redis.tar.gz; \
     echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
