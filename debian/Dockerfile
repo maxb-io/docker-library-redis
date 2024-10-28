@@ -51,10 +51,8 @@ RUN set -eux; \
 	gosu nobody true
 
 ENV REDIS_VERSION=8.0-m01
-#ENV REDIS_DOWNLOAD_URL=https://github.com/redis/redis/archive/refs/tags/8.0-m01.tar.gz
-#ENV REDIS_DOWNLOAD_SHA=4c77c2218747505c50c43a45d12a067a3631a26d9397929da180e183b03e862c
-ENV REDIS_DOWNLOAD_URL=https://github.com/redis/redis/archive/refs/heads/8.0.tar.gz
-ENV REDIS_DOWNLOAD_SHA=e9e4bf2895b830b0e183c2cf03fd9995899926d8d832850239e84e2c845b2721
+ENV REDIS_DOWNLOAD_URL=https://github.com/redis/redis/archive/refs/tags/8.0-m02.tar.gz
+ENV REDIS_DOWNLOAD_SHA=c70d565c5403c5e8392942810e980b23478b82218f6069656ea51bc8978176c1
 
 RUN set -eux; \
 	\
