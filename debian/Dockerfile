@@ -65,6 +65,7 @@ RUN set -eux; \
 		wget \
 		dpkg-dev \
 		gcc \
+        g++ \
 		libc6-dev \
 		libssl-dev \
 		make \
